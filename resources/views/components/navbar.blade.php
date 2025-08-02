@@ -1,42 +1,47 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid sticky-top" style="width: 85%">
-    <a class="navbar-brand" href="#">
-        <img src="{{ asset('img/logo.jpg') }}" alt="Logo POKDARWIS" style="max-width: 50px; border-radius: 50%; padding-right: 10px;">
-        <span class="fw-semibold fs-5 text-dark">POKDARWIS</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center w-100 text-dark">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Tentang Kami</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Artikel</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kontak Kami</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img class="rounded-pill pe-2" src="{{ asset('assets/img/logo.jpg') }}" alt="LOGO POKDARWIS">
+
+        {{-- <img src="assets/img/logo.png" alt=""> --}}
+        {{-- Uncomment the line below if you also wish to use a text logo --}}
+        <h1 class="sitename">POKDARWIS</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active">Beranda</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="single-post.html">Single Post</a></li>
+          <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="category.html">Category 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="category.html">Category 2</a></li>
+              <li><a href="category.html">Category 3</a></li>
+              <li><a href="category.html">Category 4</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="header-social-links">
+        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+
     </div>
-  </div>
-</nav>
+  </header>

@@ -4,23 +4,26 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Traits\HasViews;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use HasViews;
+
     protected $fillable = [
         'title',
         'content',
-        'category_id',
         'slug',
         'image',
         'is_published',
         'user_id',
+        'views',
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function user()

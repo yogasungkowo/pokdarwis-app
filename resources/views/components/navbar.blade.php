@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
         <img class="rounded-pill pe-2" src="{{ asset('assets/img/logo.jpg') }}" alt="LOGO POKDARWIS">
 
         {{-- <img src="assets/img/logo.png" alt=""> --}}
@@ -12,8 +12,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{{ route('home') }}" class="active">Beranda</a></li>
-          <li><a href="about.html">Tentang Kami</a></li>
-          <li><a href="single-post.html">Single Post</a></li>
+          <li><a href="{{ route('about.index') }}">Tentang Kami</a></li>
           <li class="dropdown"><a href="{{ route('category.index') }}"><span>Kategori</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               @foreach ($categories as $category )

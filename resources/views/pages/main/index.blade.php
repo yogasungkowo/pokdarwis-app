@@ -119,8 +119,8 @@
                     <h1 data-aos="fade-up">SELAMAT DATANG DI POKDARWIS WEBSITE</h1>
                     <p data-aos="fade-up" data-aos-delay="100">Bersama Menjaga Pantai dan Kesehatan Komunitas</p>
                     <div class="cta-container" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#" class="btn-hero-primary">Lihat Kegiatan Kami</a>
-                        <a href="#" class="btn-hero-secondary">Pelajari Tentang Malaria</a>
+                        <a href="{{ route('kegiatan.index') }}" class="btn-hero-primary">Lihat Kegiatan Kami</a>
+                        <a href="{{ route('malaria.index') }}" class="btn-hero-secondary">Pelajari Tentang Malaria</a>
                     </div>
                 </div>
             </div>

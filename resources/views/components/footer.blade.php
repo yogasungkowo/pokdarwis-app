@@ -3,8 +3,10 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">ZenBlog</span>
+          <a href="{{ route('home') }}" class="logo d-flex align-items-center">
+            <img class="rounded-pill pe-2" src="{{ asset('assets/img/logo.jpg') }}" alt="LOGO POKDARWIS">
+            {{-- Uncomment the line below if you also wish to use a text logo --}}
+            <span class="sitename">POKDARWIS</span>
           </a>
           <div class="footer-contact pt-3">
             <p>A108 Adam Street</p>
@@ -25,20 +27,8 @@
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
 
@@ -68,7 +58,7 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">ZenBlog</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">POKDARWIS</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->

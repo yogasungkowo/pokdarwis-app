@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
     ];
 
     /**
@@ -49,5 +50,17 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    public function getUserAvatar()
+    {
+        if (User::whereName('Prayoga Sungkowo')->exists()) {
+            return asset('https://avatars.githubusercontent.com/u/93362737?v=4');
+        }
     }
 }

@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
+            $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('image')->nullable();
-            $table->integer('views')->default(0);
-            $table->boolean('is_published')->default(false);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->text('description')->nullable();
+            $table->integer('post_count')->default(0);
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -29,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('tags');
     }
 };
+

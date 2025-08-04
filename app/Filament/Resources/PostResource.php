@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\RelationManagers;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Support\Markdown;
 use Filament\Tables\Columns\TextColumn;
 
 class PostResource extends Resource
@@ -81,6 +83,28 @@ class PostResource extends Resource
                                     ->disabled()
                                     ->dehydrated(),
                             ]),
+                        Forms\Components\Select::make('tags')
+                            ->relationship('tags', 'name')
+                            ->required()
+                            ->multiple()
+                            ->preload()
+                            ->searchable()
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function (string $state, callable $set) {
+                                        $set('slug', Str::slug($state));
+                                    }),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->disabled()
+                                    ->dehydrated(),
+                                Forms\Components\Hidden::make('created_by')
+                                    ->default(fn () => Auth::id()),
+                            ]),
                         Forms\Components\Toggle::make('is_published')
                             ->label('Published'),
                         Forms\Components\Hidden::make('user_id')
@@ -88,14 +112,22 @@ class PostResource extends Resource
                     ]),
                 Forms\Components\Grid::make(1)
                     ->schema([
-                        Forms\Components\Textarea::make('content')
+                        MarkdownEditor::make('content')
                             ->label('Konten')
-                            ->rows(10)
                             ->required()
-                            ->maxLength(65535)
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'bold',
+                                'italic',
+                                'link',
+                                'bulletList',
+                                'numberList',
+                                'codeBlock',
+                                'blockquote',
+                                'horizontalRule',
+                            ])
                     ]),
-            ]);
+            ])->columns(2);
     }
 
     public static function table(Table $table): Table
@@ -118,11 +150,27 @@ class PostResource extends Resource
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
+                TextColumn::make('views')
+                    ->label('Views')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => number_format($state)),
+                TextColumn::make('categories.name')
+                    ->label('Categories')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('tags.name')
+                    ->label('Tags')
+                    ->searchable()
+                    ->sortable(
+                )
             ])
             ->filters([
                 Tables\Filters\Filter::make('is_published')
                     ->label('Published')
-                    ->query(fn (Builder $query) => $query->where('is_published', true))
+                    ->query(fn (Builder $query) => $query->where('is_published', true)),
+                Tables\Filters\Filter::make('is_published')
+                    ->label('Draft')
+                    ->query(fn (Builder $query) => $query->where('is_published', false)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

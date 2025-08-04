@@ -33,7 +33,7 @@
   @stack('styles')
 </head>
 
-<body class="index-page">
+<body>
 
   <x-navbar />
 

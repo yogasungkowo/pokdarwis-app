@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Category;
 use App\Traits\HasViews;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use HasViews;
+    use HasViews, HasFactory;
 
     protected $fillable = [
         'title',
@@ -21,13 +22,23 @@ class Post extends Model
         'views',
     ];
 
-    public function categories()
+    public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

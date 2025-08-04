@@ -11,13 +11,15 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Beranda</a></li>
+          <li><a href="{{ route('home') }}" class="active">Beranda</a></li>
           <li><a href="about.html">Tentang Kami</a></li>
           <li><a href="single-post.html">Single Post</a></li>
-          <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="{{ route('category.index') }}"><span>Kategori</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="category.html">Category 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              @foreach ($categories as $category )
+              <li><a href="{{ route('category.show' , $category->slug) }}">{{ $category->name }}</a></li>
+              @endforeach
+              {{-- <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="#">Deep Dropdown 1</a></li>
                   <li><a href="#">Deep Dropdown 2</a></li>
@@ -25,10 +27,7 @@
                   <li><a href="#">Deep Dropdown 4</a></li>
                   <li><a href="#">Deep Dropdown 5</a></li>
                 </ul>
-              </li>
-              <li><a href="category.html">Category 2</a></li>
-              <li><a href="category.html">Category 3</a></li>
-              <li><a href="category.html">Category 4</a></li>
+              </li> --}}
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>

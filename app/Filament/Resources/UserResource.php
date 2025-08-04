@@ -36,7 +36,11 @@ class UserResource extends Resource
                 TextInput::make('password')
                     ->password()
                     ->minLength(8)
-                    ->revealable()
+                    ->revealable(),
+                TextInput::make('description')
+                    ->nullable()
+                    ->maxLength(500)
+                    ->columnSpanFull(),
             ])->columns(2);
     }
 
